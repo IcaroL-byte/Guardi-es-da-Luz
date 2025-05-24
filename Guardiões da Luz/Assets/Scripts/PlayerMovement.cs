@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (inFloor)
         {
-            jumpNumber = 2;
+            jumpNumber = 1;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpNumber > 0)
