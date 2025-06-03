@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
     {
         inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer);
         Debug.DrawLine(transform.position, groundCheck.position, Color.cyan);
+
+        if (transform.position.y < -10)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
         if (inFloor)
         {

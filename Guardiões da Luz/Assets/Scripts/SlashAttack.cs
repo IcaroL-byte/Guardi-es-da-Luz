@@ -3,6 +3,8 @@ using UnityEngine;
 public class SlashAttack : MonoBehaviour
 {
     private Animator animator;
+    private bool isFacingRight;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -28,12 +30,29 @@ public class SlashAttack : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+            if (!isFacingRight)
+            {
+                Vector3 attackPos = transform.localPosition;
+                attackPos.x *= -1;
+                transform.localPosition = attackPos;
+                transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+
+                isFacingRight = true;
+            }
         }
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+           
+            if (isFacingRight)
+            {
+                Vector3 attackPos = transform.localPosition;
+                attackPos.x *= -1;
+                transform.localPosition = attackPos;
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+                isFacingRight = false;
+            }
         }
     }
 }
